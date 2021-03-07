@@ -24,11 +24,10 @@ print (df.head(20))  #how to get the sort function to work here?
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-sns.countplot(x="origin", data=df)
-sns.set_context('poster')
-plt.show() #too many countries shown so visualisation all mushed up. Need to change orientation? What headers to use? Only show top ten?
-
 g=sns.countplot(x="origin",
                data=df)
 g.set_title("Number of Bands Per Country")
-plt.show()
+g.set(xlabel="",
+     ylabel="") #Axis labels are self explanatory so no need to show them
+plt.xticks(rotation=90)
+plt.show() #would a scatterplot with dots work better here?
