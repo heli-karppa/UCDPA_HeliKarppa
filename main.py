@@ -1,16 +1,34 @@
-# This is a sample Python script.
+import pandas as pd
+import numpy as np
+df = pd.read_csv("/Users/heliphant/PycharmProjects/pythonProject6/metal_bands_2017.csv", delimiter =",", index_col=0)
+print(df.head(20))
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+fans=df['fans']
+most_fans=fans.max()
+print(most_fans)
 
+least_fans=fans.min()
+print(least_fans)
+print(fans.median())
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+band_origin_countries=df.origin.unique()
+print(band_origin_countries) #Can I make this list alphabetical? Listing same countries multiple times, why? Bands from two different countries!
 
+number_origin_countries=df.origin.nunique()
+print(number_origin_countries) #How can I filter out multiple country combinations? Some link of conditional loop needed?
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+df=df.sort_values(['formed'])
+print (df.head(20))  #how to get the sort function to work here?
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+#Histogram of origin countries
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.countplot(x="origin", data=df)
+sns.set_context('poster')
+plt.show() #too many countries shown so visualisation all mushed up. Need to change orientation? What headers to use? Only show top ten?
+
+g=sns.countplot(x="origin",
+               data=df)
+g.set_title("Number of Bands Per Country")
+plt.show()
