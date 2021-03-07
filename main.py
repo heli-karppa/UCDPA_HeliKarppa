@@ -17,6 +17,21 @@ print(band_origin_countries) #Can I make this list alphabetical? Listing same co
 number_origin_countries=df.origin.nunique()
 print(number_origin_countries) #How can I filter out multiple country combinations? Some link of conditional loop needed?
 
+#Top 10 countries with metal bands?
+bands_per_country=df['origin'].value_counts()
+top10 = bands_per_country[:10]
+print(top10)
+
+#Visualisation of Top 10
+import matplotlib.pyplot as plt
+import seaborn as sns
+g=sns.barplot(x=top10.index, y=top10.values)
+g.set_title("Top 10 Number of Bands Per Country")
+g.set(xlabel="",
+     ylabel="")
+plt.xticks(rotation=90)
+plt.show()
+
 df=df.sort_values(['formed'])
 print (df.head(20))  #how to get the sort function to work here?
 
@@ -31,3 +46,4 @@ g.set(xlabel="",
      ylabel="") #Axis labels are self explanatory so no need to show them
 plt.xticks(rotation=90)
 plt.show() #would a scatterplot with dots work better here?
+
