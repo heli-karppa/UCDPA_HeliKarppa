@@ -1,7 +1,10 @@
 import pandas as pd
 import numpy as np
 df = pd.read_csv("/Users/heliphant/PycharmProjects/pythonProject6/metal_bands_2017.csv", delimiter =",", index_col=0)
-print(df.head(20))
+
+#First founded bands - need to get rid of '-' values - also only need to see band name and founded year
+df_2=df.sort_values(['formed'])
+print (df_2.head(20))
 
 fans=df['fans']
 most_fans=fans.max()
@@ -25,15 +28,13 @@ print(top10)
 #Visualisation of Top 10
 import matplotlib.pyplot as plt
 import seaborn as sns
+sns.set_palette("BuPu_r") #change colour to darker? (currently not working)
 g=sns.barplot(x=top10.index, y=top10.values)
 g.set_title("Top 10 Number of Bands Per Country")
 g.set(xlabel="",
      ylabel="")
 plt.xticks(rotation=90)
 plt.show()
-
-df=df.sort_values(['formed'])
-print (df.head(20))  #how to get the sort function to work here?
 
 #Histogram of origin countries
 import seaborn as sns
