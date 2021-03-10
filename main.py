@@ -10,6 +10,7 @@ fans=df['fans']
 most_fans=fans.max()
 print(most_fans)
 
+
 least_fans=fans.min()
 print(least_fans)
 print(fans.median())
