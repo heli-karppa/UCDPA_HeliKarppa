@@ -1,8 +1,9 @@
 import pandas as pd
 df = pd.read_csv("metal_bands_2017.csv", delimiter =",", index_col=0)
+df_clean=df.drop_duplicates()
 
 #'Style' column name seems to confuse Python so renaming that here with a dictionary value assignment
-df_new = df.rename(columns={'style': 'genre'})
+df_new = df_clean.rename(columns={'style': 'genre'})
 print(df_new.head())
 
 #Split style/genre column where many rows list multiple values
@@ -34,13 +35,14 @@ genre_counts=pd.Series(genres_per_band).value_counts()
 top10_genres=genre_counts[:10]
 print(top10_genres)
 
-#Visualise somehow?
+#Visualise somehow? Another bar plot probably best.
 
 #What are some of the strangest and rarest genres? Where do these bands tend to be from?
-Suomi=genres_per_band.count('Suomi')
-print(Suomi)
-#Bands with genre Suomi (Finnish for 'Finland') - are they all from Finland?
+Suomi_number=genres_per_band.count('Suomi')
+print(Suomi_number)
+#Bands with genre Suomi (Finnish for 'Finland') - are they all from Finland? Might be difficult...
 
+if 'origin' is 'Finland'
 
 #How often does 'metal' appear in the present-day charts? LastFM API?
 

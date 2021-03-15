@@ -1,41 +1,15 @@
 import pandas as pd
 df = pd.read_csv("metal_bands_2017.csv", delimiter =",", index_col=0)
 
-#First founded bands - need to get rid of '-' values - also only need to see band name and founded year
-df_2=df.sort_values(['formed'])
-print (df_2[['band_name', 'formed']].head(20))
+#NEED TO DROP DUPLICATE ROWS!!! Original has 5000 rows, now 4950 so there were 50 duplicates
+df_clean=df.drop_duplicates()
+print(df_clean)
 
-#since only 4 bands with '-' in formed could exclude them by subsetting
-print(df_2[['band_name', 'formed']][4:].head(20))
-
-#Most recent bands in the data set?
-df_3=df.sort_values(['formed'], ascending=False)
-print(df_3[['band_name', 'formed']].head(20))
-
-#What are the first five founded Finnish bands listed? How to use .loc here?
-data = pd.read_csv("metal_bands_2017.csv", index_col ="origin")
-finn_bands=data.loc["Finland"]
-#Indexed bands my origin and pulling only those with Finland
-#Now need to sort this by founded year...
-sorted_finn=finn_bands.sort_values(['formed'])
-print(sorted_finn[['band_name','formed']].head())
-
-
-#Number of fans - Most, least, on average
-fans=df['fans']
-most_fans=max(fans)
-print(most_fans)
-
-least_fans=min(fans)
-print(least_fans)
-
-print(fans.median())
-
-#How about origin countries?
-band_origin_countries=df.origin.unique()
+#Let's start with origin countries?
+band_origin_countries=df_clean.origin.unique()
 print(band_origin_countries) #Can I make this list alphabetical?
 
-mult_origin=df.origin.str.split(',', expand=True)
+mult_origin=df_clean.origin.str.split(',', expand=True)
 mult_origin.columns=['country_1', 'country_2']
 print(mult_origin)
 
@@ -47,7 +21,7 @@ print(mult_countries)
 print(len(mult_countries))
 
 #How many different nations? This should exclude the 36 rows with multiple origins at this stage.
-number_origin_countries=df.origin.nunique()
+number_origin_countries=df_clean.origin.nunique()
 print(number_origin_countries)
 minus_multiple=number_origin_countries-36
 print(minus_multiple)
@@ -56,7 +30,7 @@ print(minus_multiple)
 
 
 #Top 10 countries with metal bands? This is excluding the 36 bands with multiple origins.
-bands_per_country=df['origin'].value_counts()
+bands_per_country=df_clean['origin'].value_counts()
 top10 = bands_per_country[:10]
 print(top10)
 
@@ -73,20 +47,10 @@ g.set(xlabel="",
 plt.xticks(rotation=90)
 plt.show()
 
-#Histogram of origin countries
-import seaborn as sns
-import matplotlib.pyplot as plt
-
-g=sns.countplot(x="origin",
-               data=df)
-g.set_title("Number of Bands Per Country")
-g.set(xlabel="",
-     ylabel="") #Axis labels are self explanatory so no need to show them
-plt.xticks(rotation=90)
-plt.show() #would a scatterplot with dots work better here?
-
-
 #From Top10, how many Heavy metal bands are there in the Nordics (FI, NO, SE) vs in North America (US, CA)?
+#Form a dictionary from counted values earlier and count?
 
 
 #In proportion to population of these regions, which has more bands per capita?
+
+
