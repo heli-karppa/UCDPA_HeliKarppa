@@ -24,3 +24,20 @@ finn_bands=data.loc["Finland"]
 #Now need to sort this by founded year...
 sorted_finn=finn_bands.sort_values(['formed'])
 print(sorted_finn[['band_name','formed']].head())
+
+#Number of bands - need to count by year formed...
+a = list(df_clean['formed'].to_dict().values())
+bands_by_year_counts={i:a.count(i) for i in a if '-' not in i}
+year_df = pd.DataFrame()
+year_df['band_counts']=pd.Series(bands_by_year_counts)
+print(year_df)
+
+#Need to give year column a name... - unable to define 'x' below...
+import matplotlib.pyplot as plt
+import seaborn as sns
+sns.relplot(x=year_df.index,
+            y ='band_counts',
+            data=year_df,
+            kind="line",)
+plt.show()
+#Plot works but need to modify? years on x-axis only in 5-year intervals?
