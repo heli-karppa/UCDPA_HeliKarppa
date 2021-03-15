@@ -19,7 +19,10 @@ fans_top20=fans_descending[:20]
 print(fans_top20[['band_name','origin','fans']])
 
 #How can I pull counts of fans per the country of origin of a band?
+fans_country_alphabetical=df_clean.sort_values(['origin'])
+print(fans_country_alphabetical[['band_name', 'origin','fans']])
 
+#Still need to calculate by origin....
 
 
 #Visualise with a scatterplot?

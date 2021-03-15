@@ -41,7 +41,7 @@ print(top10_genres)
 Suomi_number=genres_per_band.count('Suomi')
 print(Suomi_number)
 #Bands with genre Suomi (Finnish for 'Finland') - are they all from Finland? Might be difficult...
-
+#Iterrows??? Loop??
 if 'origin' is 'Finland'
 
 #How often does 'metal' appear in the present-day charts? LastFM API?
