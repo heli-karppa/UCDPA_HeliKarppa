@@ -1,5 +1,5 @@
 import pandas as pd
-df = pd.read_csv("/Users/heliphant/PycharmProjects/pythonProject6/metal_bands_2017.csv", delimiter =",", index_col=0)
+df = pd.read_csv("metal_bands_2017.csv", delimiter =",", index_col=0)
 
 #First founded bands - need to get rid of '-' values - also only need to see band name and founded year
 df_2=df.sort_values(['formed'])
@@ -12,9 +12,14 @@ print(df_2[['band_name', 'formed']][4:].head(20))
 df_3=df.sort_values(['formed'], ascending=False)
 print(df_3[['band_name', 'formed']].head(20))
 
-#What is the first founded Finnish band listed here? How to use .loc here conditionally? Not working yet!
-finn_bands=df_2.loc[[:-1],['origin']]
-print(finn_bands)
+#What are the first five founded Finnish bands listed? How to use .loc here?
+data = pd.read_csv("metal_bands_2017.csv", index_col ="origin")
+finn_bands=data.loc["Finland"]
+#Indexed bands my origin and pulling only those with Finland
+#Now need to sort this by founded year...
+sorted_finn=finn_bands.sort_values(['formed'])
+print(sorted_finn[['band_name','formed']].head())
+
 
 #Number of fans - Most, least, on average
 fans=df['fans']
@@ -83,6 +88,5 @@ plt.show() #would a scatterplot with dots work better here?
 
 #From Top10, how many Heavy metal bands are there in the Nordics (FI, NO, SE) vs in North America (US, CA)?
 
-#How do Top10 excluded countries in same regions compare with their number of bands? - DK, MX
 
 #In proportion to population of these regions, which has more bands per capita?

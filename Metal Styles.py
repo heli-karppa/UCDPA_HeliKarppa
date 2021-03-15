@@ -1,34 +1,48 @@
 import pandas as pd
-df = pd.read_csv("/Users/heliphant/PycharmProjects/pythonProject6/metal_bands_2017.csv", delimiter =",", index_col=0)
-#NEED to change this reference before I submit the project
+df = pd.read_csv("metal_bands_2017.csv", delimiter =",", index_col=0)
 
 #'Style' column name seems to confuse Python so renaming that here with a dictionary value assignment
 df_new = df.rename(columns={'style': 'genre'})
 print(df_new.head())
 
-#Split style column where many rows list multiple values
+#Split style/genre column where many rows list multiple values
 individual_genres=df_new.genre.str.split(',', expand=True)
 individual_genres.columns=['genre_1', 'genre_2', 'genre_3', 'genre_4', 'genre_5', 'genre_6']
 print(individual_genres)
 #Now this is listing 5 genres for each even if they don't exist. Why? Can I drop the 'None' values?
 
-#Seems so complicated - workaround to do the same as with origin countries...
-mult_genres=individual_genres.dropna(axis=0, subset=['genre_2'])
-print(mult_genres)
-#Still showing the 'None' values and unable to compile a list of unique genres
+# Merge column values into a list?
+list_of_genres=individual_genres.values.tolist()
+#Now this is a list of lists - I want one flat list of all so easier to drop duplicates and 'None'
+flattened_list=[y for x in list_of_genres for y in x]
 
-#How many rows i.e. bands listed under multiple genres
-print(len(mult_genres))
+#Drop duplicates - using this set() function because the index doesn't matter here - we just want unique values
+list_no_dupes=list(set(flattened_list))
+print(list_no_dupes)
+#filter out None also?
+None_filtered=list(filter(None, list_no_dupes))
+print(None_filtered)
 
+#How many genres are there?
+print(len(None_filtered))
 
-#How many genres are there? -1 since 'None' is not a genre
-print(individual_genres.nunique()) #Showing the unique values per column
-#How can I compare the values in different columns since there could be duplicates?
-import numpy as np
-column_values=individual_genres[['genre_1', 'genre_2', 'genre_3', 'genre_4', 'genre_5', 'genre_6']].values.ravel()
-
-
-#Pick 3-5 metal styles and see how popular they are?
-
+#What are the top10 genres?
+#First filter out just 'None' from original flat list. We want to keep the duplicates.
+genres_per_band=list(filter(None, flattened_list))
+#Lets use pandas series to pull the value counts again...
+genre_counts=pd.Series(genres_per_band).value_counts()
+top10_genres=genre_counts[:10]
+print(top10_genres)
 
 #Visualise somehow?
+
+#What are some of the strangest and rarest genres? Where do these bands tend to be from?
+Suomi=genres_per_band.count('Suomi')
+print(Suomi)
+#Bands with genre Suomi (Finnish for 'Finland') - are they all from Finland?
+
+
+#How often does 'metal' appear in the present-day charts? LastFM API?
+
+
+
