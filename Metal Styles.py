@@ -12,7 +12,7 @@ individual_genres.columns=['genre_1', 'genre_2', 'genre_3', 'genre_4', 'genre_5'
 print(individual_genres)
 #Now this is listing 5 genres for each even if they don't exist. Why? Can I drop the 'None' values?
 
-# Merge column values into a list?
+#Merge column values into a list?
 list_of_genres=individual_genres.values.tolist()
 #Now this is a list of lists - I want one flat list of all so easier to drop duplicates and 'None'
 flattened_list=[y for x in list_of_genres for y in x]
@@ -36,13 +36,34 @@ top10_genres=genre_counts[:10]
 print(top10_genres)
 
 #Visualise somehow? Another bar plot probably best.
+import matplotlib.pyplot as plt
+import seaborn as sns
+sns.set_palette("BuPu_r") #change colour to darker? (currently not working)
+g=sns.barplot(x=top10_genres.index, y=top10_genres.values)
+g.set_title("Top 10 Metal Genres")
+g.set(xlabel="",
+     ylabel="# of bands")
+plt.xticks(rotation=90)
+plt.show()
 
 #What are some of the strangest and rarest genres? Where do these bands tend to be from?
 Suomi_number=genres_per_band.count('Suomi')
 print(Suomi_number)
 #Bands with genre Suomi (Finnish for 'Finland') - are they all from Finland? Might be difficult...
-#Iterrows??? Loop??
-if 'origin' is 'Finland'
+#Pull index of rows where "Suomi" is mentioned in the 'genre' column
+print(df_new[df_new['genre']=="Suomi"].index.values)
+#This only gives 9 indexes while 'Suomi' is mentioned with 16 rows in total as counted earlier...
+#The rest must have more than one genre listed. How do I find those rows so I can check the country of origin?
+
+#Need to do the same with each split columns from earlier..
+print(individual_genres[individual_genres['genre_1']=="Suomi"].index.values)
+print(individual_genres[individual_genres['genre_2']=="Suomi"].index.values)
+print(individual_genres[individual_genres['genre_3']=="Suomi"].index.values)
+#16 indexes by 3rd column so no need to search further... Now I need to print the 'origin' column of these specific rows
+print(df_new.loc[[308,453,476,767,786,854,1194,1517,1546,1742,2042,3382,200,3407,4017,2716],['band_name','origin']])
+#All but one are from Finland!
+
+#Should I make a visualisation(s) just about my findings about Finnish bands? What kind?
 
 #How often does 'metal' appear in the present-day charts? LastFM API?
 
