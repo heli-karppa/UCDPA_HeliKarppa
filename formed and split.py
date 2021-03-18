@@ -13,7 +13,12 @@ print(df_2[['band_name', 'formed']][4:].head(20))
 df_3=df_clean.sort_values(['formed'], ascending=False)
 print(df_3[['band_name', 'formed']].head(20))
 
-#How to look at split years?
+#How to look at split years? Or should I leave for last if I have time?
+
+#Does the first formed artist/band Alice Cooper still get mentions? Data from LastFM API
+import json
+import requests
+url="http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=alice_cooper&api_key=YOUR_API_KEY&format=json"
 
 
 
@@ -34,10 +39,18 @@ print(year_df)
 
 #Need to give year column a name... - unable to define 'x' below...
 import matplotlib.pyplot as plt
+import numpy as np
 import seaborn as sns
-sns.relplot(x=year_df.index,
+g=sns.relplot(x=year_df.index,
             y ='band_counts',
             data=year_df,
-            kind="line",)
+            kind="line")
+g.fig.suptitle("Number of Bands Formed Through Time")
+g.set(xlabel='Year',
+      ylabel='Band Count')
+x_ticks = np.arange(1964, 1980, 1995) #Trying to modify the range of years shown....
+plt.xticks(x_ticks,
+           rotation=30)
 plt.show()
+#Can I stretch the x-axis?
 #Plot works but need to modify? years on x-axis only in 5-year intervals?

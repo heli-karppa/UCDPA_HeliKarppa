@@ -46,10 +46,10 @@ g.set(xlabel="",
 plt.xticks(rotation=90)
 plt.show()
 
-#What are some of the strangest and rarest genres? Where do these bands tend to be from?
+#The genre 'Suomi' seems interesting. How many bands are there with this genre?
 Suomi_number=genres_per_band.count('Suomi')
 print(Suomi_number)
-#Bands with genre Suomi (Finnish for 'Finland') - are they all from Finland? Might be difficult...
+#Bands with genre Suomi (Finnish for 'Finland') - are they all from Finland?
 #Pull index of rows where "Suomi" is mentioned in the 'genre' column
 print(df_new[df_new['genre']=="Suomi"].index.values)
 #This only gives 9 indexes while 'Suomi' is mentioned with 16 rows in total as counted earlier...
@@ -63,9 +63,8 @@ print(individual_genres[individual_genres['genre_3']=="Suomi"].index.values)
 print(df_new.loc[[308,453,476,767,786,854,1194,1517,1546,1742,2042,3382,200,3407,4017,2716],['band_name','origin']])
 #All but one are from Finland!
 
-#Should I make a visualisation(s) just about my findings about Finnish bands? What kind?
+#How popular are bands with 'Suomi' genre? Who is the most popular? Visualise.
+suomi_bands=df_new.loc[[308,453,476,767,786,854,1194,1517,1546,1742,2042,3382,200,3407,4017,2716]
 
-#How often does 'metal' appear in the present-day charts? LastFM API?
-
-
+#How do I get this to work????
 
