@@ -38,7 +38,7 @@ print(top10_genres)
 #Visualise somehow? Another bar plot probably best.
 import matplotlib.pyplot as plt
 import seaborn as sns
-sns.set_palette("BuPu_r") #change colour to darker? (currently not working)
+sns.set_palette("BuPu_r") #change colour to darker? (currently not working) - !!!!
 g=sns.barplot(x=top10_genres.index, y=top10_genres.values)
 g.set_title("Top 10 Metal Genres")
 g.set(xlabel="",
@@ -63,8 +63,10 @@ print(individual_genres[individual_genres['genre_3']=="Suomi"].index.values)
 print(df_new.loc[[308,453,476,767,786,854,1194,1517,1546,1742,2042,3382,200,3407,4017,2716],['band_name','origin']])
 #All but one are from Finland!
 
-#How popular are bands with 'Suomi' genre? Who is the most popular? Visualise.
-suomi_bands=df_new.loc[[308,453,476,767,786,854,1194,1517,1546,1742,2042,3382,200,3407,4017,2716]
+#How popular are bands with 'Suomi' genre? Who is the most popular? Visualise. - !!!!
+suomi_bands=df_new.loc[[308,453,476,767,786,854,1194,1517,1546,1742,2042,3382,200,3407,4017,2716]]
+print(suomi_bands[['band_name','fans']])
 
-#How do I get this to work????
+#What are the other styles/genres of Finnish bands and how does the fan base of 'Suomi' compare with them? Visualise. -!!!!
+
 

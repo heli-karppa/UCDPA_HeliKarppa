@@ -22,10 +22,11 @@ print(fans_top20[['band_name','origin','fans']])
 fans_country_alphabetical=df_clean.sort_values(['origin'])
 print(fans_country_alphabetical[['band_name', 'origin','fans']])
 
-#Still need to calculate by origin....
+#Still need to calculate by origin.... - !!!!
 
 
-#Visualise with a scatterplot
+
+#Scatterplot of Top20 most popular bands and their origin/genre
 import matplotlib.pyplot as plt
 import seaborn as sns
 g=sns.relplot(x='style',
@@ -34,11 +35,9 @@ g=sns.relplot(x='style',
             kind="scatter",
             size="origin",
             hue='origin')
-g.fig.suptitle("Popularity, Genre & Origin")
+g.fig.suptitle("Top 20 Popular Bands: Genre & Origin")
 g.set(ylabel='Number of fans')
 plt.xticks(rotation=90)
 plt.show()
-#This is OK but the x-ticks get cut off in the middle. How to fix this???
 
-#What has been the fan base progression of Finnish bands over time? Too difficult?
-g=sns.relplot(x=df_clean.index[''],
+#What can we say about Finnish bands in Top 20? How about others? - For the report.

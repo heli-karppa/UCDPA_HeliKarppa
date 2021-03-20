@@ -13,16 +13,15 @@ print(df_2[['band_name', 'formed']][4:].head(20))
 df_3=df_clean.sort_values(['formed'], ascending=False)
 print(df_3[['band_name', 'formed']].head(20))
 
-#How to look at split years? Or should I leave for last if I have time?
-
 #Does the first formed artist/band Alice Cooper still get mentions? Data from LastFM API
+# !!! API OR WEB SCRAPING? Could I pull some Finland related data from the web like what?!
 import json
 import requests
 url="http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=alice_cooper&api_key=YOUR_API_KEY&format=json"
 
 
 
-#What are the first five founded Finnish bands listed? How to use .loc here?
+#What are the first five founded Finnish bands listed?
 data = pd.read_csv("metal_bands_2017.csv", index_col ="origin")
 finn_bands=data.loc["Finland"]
 #Indexed bands my origin and pulling only those with Finland
@@ -37,7 +36,7 @@ year_df = pd.DataFrame()
 year_df['band_counts']=pd.Series(bands_by_year_counts)
 print(year_df)
 
-#Need to give year column a name... - unable to define 'x' below...
+#Need to give year column a name... - unable to define 'x' below... - !!!!
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
@@ -48,7 +47,7 @@ g=sns.relplot(x=year_df.index,
 g.fig.suptitle("Number of Bands Formed Through Time")
 g.set(xlabel='Year',
       ylabel='Band Count')
-x_ticks = np.arange(1964, 1980, 1995) #Trying to modify the range of years shown....
+x_ticks = np.arange(1964, 1980, 1995) #Trying to modify the range of years shown.... - !!!!
 plt.xticks(x_ticks,
            rotation=30)
 plt.show()
