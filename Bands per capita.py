@@ -21,18 +21,19 @@ top10_pop=df_pop_2015.loc[['United States', 'Sweden', 'Germany', 'United Kingdom
 top10_pop_new=top10_pop.rename(index={'United States': 'USA', 'Netherlands':'The Netherlands'})
 print(top10_pop_new)
 
-#Per capita = measurement/number of people in a population
-per_capita=top10/top10_pop_new
+#Per capita = measurement/number of people in a population - how many bands per half a million people?
+per_capita=top10/top10_pop_new*500000
 print(per_capita)
 
-#Visualise - put two bar plots side by side? -!!!!
+#Visualise
 import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set_palette("BuPu_r") #play with this more?
-g=sns.catplot(x=top10.index,
-              y=top10.values)
-g.set_title("Top 10 Number of Bands Per Country")
+g=sns.barplot(x=per_capita.index,
+            y=per_capita.values)
+g.set_title("Bands Per 500k People in Top 10")
 g.set(xlabel="",
      ylabel="")
 plt.xticks(rotation=90)
 plt.show()
+#Nordics have 20+ bands per 500,000 people and clearly have a much higher concentration of metal bands in comparison to the others

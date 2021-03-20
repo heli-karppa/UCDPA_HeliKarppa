@@ -47,9 +47,8 @@ g=sns.relplot(x=year_df.index,
 g.fig.suptitle("Number of Bands Formed Through Time")
 g.set(xlabel='Year',
       ylabel='Band Count')
-x_ticks = np.arange(1964, 1980, 1995) #Trying to modify the range of years shown.... - !!!!
-plt.xticks(x_ticks,
-           rotation=30)
+plt.xticks(rotation=30)
 plt.show()
 #Can I stretch the x-axis?
 #Plot works but need to modify? years on x-axis only in 5-year intervals?
+#Needs to be in linear time order... now is not. -!!!!
