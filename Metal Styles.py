@@ -35,38 +35,15 @@ genre_counts=pd.Series(genres_per_band).value_counts()
 top10_genres=genre_counts[:10]
 print(top10_genres)
 
-#Visualise somehow? Another bar plot probably best.
+#Visualise
 import matplotlib.pyplot as plt
 import seaborn as sns
+sns.set_style('whitegrid')
 sns.set_palette("BuPu_r") #change colour to darker? (currently not working) - !!!!
-g=sns.barplot(x=top10_genres.index, y=top10_genres.values)
+g=sns.barplot(x=top10_genres.index,
+              y=top10_genres.values)
 g.set_title("Top 10 Metal Genres")
 g.set(xlabel="",
      ylabel="# of bands")
 plt.xticks(rotation=90)
 plt.show()
-
-#The genre 'Suomi' seems interesting. How many bands are there with this genre?
-Suomi_number=genres_per_band.count('Suomi')
-print(Suomi_number)
-#Bands with genre Suomi (Finnish for 'Finland') - are they all from Finland?
-#Pull index of rows where "Suomi" is mentioned in the 'genre' column
-print(df_new[df_new['genre']=="Suomi"].index.values)
-#This only gives 9 indexes while 'Suomi' is mentioned with 16 rows in total as counted earlier...
-#The rest must have more than one genre listed. How do I find those rows so I can check the country of origin?
-
-#Need to do the same with each split columns from earlier..
-print(individual_genres[individual_genres['genre_1']=="Suomi"].index.values)
-print(individual_genres[individual_genres['genre_2']=="Suomi"].index.values)
-print(individual_genres[individual_genres['genre_3']=="Suomi"].index.values)
-#16 indexes by 3rd column so no need to search further... Now I need to print the 'origin' column of these specific rows
-print(df_new.loc[[308,453,476,767,786,854,1194,1517,1546,1742,2042,3382,200,3407,4017,2716],['band_name','origin']])
-#All but one are from Finland!
-
-#How popular are bands with 'Suomi' genre? Who is the most popular? Visualise. - !!!!
-suomi_bands=df_new.loc[[308,453,476,767,786,854,1194,1517,1546,1742,2042,3382,200,3407,4017,2716]]
-print(suomi_bands[['band_name','fans']])
-
-#What are the other styles/genres of Finnish bands and how does the fan base of 'Suomi' compare with them? Visualise. -!!!!
-
-

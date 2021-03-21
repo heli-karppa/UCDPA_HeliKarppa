@@ -24,14 +24,18 @@ print(top10_pop_new)
 #Per capita = measurement/number of people in a population - how many bands per half a million people?
 per_capita=top10/top10_pop_new*500000
 print(per_capita)
+#Sort so tha this is from highest to lowest density
+sorted_per_capita=per_capita.sort_values(ascending=False)
+print(sorted_per_capita)
 
 #Visualise
 import matplotlib.pyplot as plt
 import seaborn as sns
-sns.set_palette("BuPu_r") #play with this more?
-g=sns.barplot(x=per_capita.index,
-            y=per_capita.values)
-g.set_title("Bands Per 500k People in Top 10")
+sns.set_style("whitegrid") #Adding grid lines to clean up the chart a little
+sns.set_palette('PRGn')#This still doesn't reflect? - !!!
+g=sns.barplot(x=sorted_per_capita.index,
+            y=sorted_per_capita.values)
+g.set_title("Band Counts Per 500k People in Top 10 Countries")
 g.set(xlabel="",
      ylabel="")
 plt.xticks(rotation=90)

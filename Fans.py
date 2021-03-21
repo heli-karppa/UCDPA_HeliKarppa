@@ -24,8 +24,6 @@ print(fans_country_alphabetical[['band_name', 'origin','fans']])
 
 #Still need to calculate by origin.... - !!!!
 
-
-
 #Scatterplot of Top20 most popular bands and their origin/genre
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -36,6 +34,17 @@ g=sns.relplot(x='style',
             size="origin",
             hue='origin')
 g.fig.suptitle("Top 20 Popular Bands: Genre & Origin")
+g.set(ylabel='Number of fans')
+plt.xticks(rotation=90)
+plt.show()
+
+
+g=sns.relplot(x='origin',
+            y='fans',
+            data=fans_country_alphabetical,
+            kind="scatter",
+            size="fans")
+g.fig.suptitle("")
 g.set(ylabel='Number of fans')
 plt.xticks(rotation=90)
 plt.show()
