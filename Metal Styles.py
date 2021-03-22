@@ -16,11 +16,12 @@ print(individual_genres)
 list_of_genres=individual_genres.values.tolist()
 #Now this is a list of lists - I want one flat list of all so easier to drop duplicates and 'None'
 flattened_list=[y for x in list_of_genres for y in x]
+print(flattened_list)
 
 #Drop duplicates - using this set() function because the index doesn't matter here - we just want unique values
 list_no_dupes=list(set(flattened_list))
 print(list_no_dupes)
-#filter out None also?
+#The above still shows 'None' - filter out None also?
 None_filtered=list(filter(None, list_no_dupes))
 print(None_filtered)
 

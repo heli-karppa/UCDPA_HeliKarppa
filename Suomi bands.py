@@ -44,7 +44,8 @@ g=sns.barplot(x='band_name',
             y='fans',
             data=suomi_bands_sorted)
 g.set_title("'Suomi' bands")
-g.set(ylabel='Number of fans')
+g.set(ylabel='Number of fans',
+      xlabel='')
 plt.xticks(rotation=90)
 plt.show()
 
@@ -71,7 +72,6 @@ genre_counts_finn_top20=genre_counts_finn[:20]
 import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set_style('whitegrid')
-sns.set_palette("BuPu_r") #change colour to darker? (currently not working) - !!!!
 g=sns.barplot(x=genre_counts_finn_top20.index,
               y=genre_counts_finn_top20.values)
 g.set_title("Top 20 Finnish Metal Genres")
