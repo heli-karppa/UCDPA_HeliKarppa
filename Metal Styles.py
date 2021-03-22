@@ -39,7 +39,6 @@ print(top10_genres)
 import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set_style('whitegrid')
-sns.set_palette("BuPu_r") #change colour to darker? (currently not working) - !!!!
 g=sns.barplot(x=top10_genres.index,
               y=top10_genres.values)
 g.set_title("Top 10 Metal Genres")

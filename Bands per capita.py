@@ -1,8 +1,6 @@
 #Just copying the start/needed code from main
 import pandas as pd
 df = pd.read_csv("metal_bands_2017.csv", delimiter =",", index_col=0)
-print(len(df))
-
 df_clean=df.drop_duplicates()
 
 bands_per_country=df_clean['origin'].value_counts()
@@ -32,7 +30,6 @@ print(sorted_per_capita)
 import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set_style("whitegrid") #Adding grid lines to clean up the chart a little
-sns.set_palette('PRGn')#This still doesn't reflect? - !!!
 g=sns.barplot(x=sorted_per_capita.index,
             y=sorted_per_capita.values)
 g.set_title("Band Counts Per 500k People in Top 10 Countries")

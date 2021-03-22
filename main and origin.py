@@ -35,7 +35,6 @@ print(top10)
 
 import matplotlib.pyplot as plt
 import seaborn as sns
-sns.set_palette("BuPu_r")
 g=sns.barplot(x=top10.index,
               y=top10.values)
 g.set_title("Top 10 Number of Bands Per Country")
